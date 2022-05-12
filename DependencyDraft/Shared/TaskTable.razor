@@ -1,0 +1,26 @@
+﻿<h1 class="text-center" >TaskTable</h1>
+
+<div class="row">
+<table class="table table-striped">
+    <thead class="table-active">
+        <tr>
+            <th>Task Name</th>
+            <th>Coloborator</th>
+            <th>In progress</th>
+            <th>Is done</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var task in taskService.GetSimpleList())
+            {
+        <tr>
+            <td>@task.TaskName</td>
+            <td>@task.NameOfColoborator</td>
+            <td><input type="checkbox" @bind-value="task.InProgress"></td>
+            <td><input type="checkbox" @bind-value="task.IsDone"></td>
+
+        </tr>
+            }
+    </tbody>
+</table>
+</div>
