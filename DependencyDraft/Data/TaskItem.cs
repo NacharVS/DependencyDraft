@@ -15,7 +15,7 @@ namespace DependencyDraft.Data
         {
             TaskName = taskName;
             NameOfColoborator = nameOfColoborator;
-            InProgress = false;
+            InProgress = true;
             IsDone = false;
         }
 

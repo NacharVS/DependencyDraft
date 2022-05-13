@@ -17,13 +17,17 @@ namespace DependencyDraft.Shared
         private string _nameColoborator;
         private bool _inProgress;
         private bool _isDone;
-        private string _day = "Monday";
+        private string _day;
 
         private void RefreshList()
         {
             taskService.AddToList(_taskName, _nameColoborator);
         }
 
+        protected override void OnInitialized()
+        {
+            taskService.listOfTasks = MongoService.GetListFromDb();
+        }
 
     }
 }
