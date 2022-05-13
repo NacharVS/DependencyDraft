@@ -11,7 +11,19 @@ namespace DependencyDraft.Shared
     {
         [Inject]
         TaskService taskService { get; set; }
+        [Inject]
+        MongoService dbService { get; set; }
+        private string _taskName;
+        private string _nameColoborator;
+        private bool _inProgress;
+        private bool _isDone;
+        private string _day = "Monday";
 
-        
+        private void RefreshList()
+        {
+            taskService.AddToList(_taskName, _nameColoborator);
+        }
+
+
     }
 }

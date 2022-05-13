@@ -30,6 +30,7 @@ namespace DependencyDraft
             services.AddServerSideBlazor();
             services.AddSingleton<WeatherForecastService>();
             services.AddSingleton<TaskService>();
+            services.AddTransient<MongoService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

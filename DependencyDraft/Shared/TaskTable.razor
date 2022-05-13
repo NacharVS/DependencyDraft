@@ -1,26 +1,45 @@
-﻿<h1 class="text-center" >TaskTable</h1>
+﻿<h1 class="text-center">TaskTable</h1>
 
 <div class="row">
-<table class="table table-striped">
-    <thead class="table-active">
-        <tr>
-            <th>Task Name</th>
-            <th>Coloborator</th>
-            <th>In progress</th>
-            <th>Is done</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach(var task in taskService.GetSimpleList())
+    <table class="table table-striped">
+        <thead class="table-active">
+            <tr>
+                <th>Task Name</th>
+                <th>Coloborator</th>
+                <th>In progress</th>
+                <th>Is done</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var task in taskService.listOfTasks)
             {
-        <tr>
-            <td>@task.TaskName</td>
-            <td>@task.NameOfColoborator</td>
-            <td><input type="checkbox" @bind-value="task.InProgress"></td>
-            <td><input type="checkbox" @bind-value="task.IsDone"></td>
+                <tr>
+                    <td>@task.TaskName</td>
+                    <td>@task.NameOfColoborator</td>
+                    <td><input type="checkbox" @bind-value="task.InProgress"></td>
+                    <td><input type="checkbox" @bind-value="task.IsDone"></td>
 
-        </tr>
+                </tr>
             }
-    </tbody>
-</table>
+        </tbody>
+    </table>
 </div>
+
+<div class="row">
+    <div class="col">
+        <input class="form-control" placeholder="New Task" @bind-value="_taskName" />
+    </div>
+    <div class="col">
+        <input class="form-control" placeholder="Coloborator" @bind-value="_nameColoborator" />
+    </div>
+    <div class="col">
+        <input class="form-control" placeholder="Day" @bind-value="_day" />
+    </div>
+    <div class="col">
+        <button class="btn btn-primary" @onclick="RefreshList">Add Task</button>
+    </div>
+    <div class="col">
+        <button class="btn btn-primary" @onclick="(()=> dbService.AddCurrentListToDB(taskService, _day))">Save List</button>
+    </div>
+</div>
+
