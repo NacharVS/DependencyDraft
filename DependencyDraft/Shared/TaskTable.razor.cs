@@ -13,7 +13,6 @@ namespace DependencyDraft.Shared
         TaskService taskService { get; set; }
         [Inject]
         MongoService dbService { get; set; }
-        DateTime dateTime = DateTime.Now;
         private string _taskName;
         private string _nameColoborator;
         private bool _inProgress;
@@ -25,14 +24,11 @@ namespace DependencyDraft.Shared
             taskService.AddToList(_taskName, _nameColoborator);
         }
 
-        private void SaveDate()
-        {
-            var date = dateTime;
-        }
 
         protected override void OnInitialized()
         {
             taskService.listOfTasks = MongoService.GetListFromDb();
+            taskService.TimeOfAdd = DateTime.Now;
         }
 
     }

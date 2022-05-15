@@ -9,11 +9,11 @@ namespace DependencyDraft.Data
     public class MongoService
     {
 
-        public void AddCurrentListToDB(TaskService service, string day)
+        public void AddCurrentListToDB(TaskService service)
         {
             var client = new MongoClient("mongodb://localhost");
             var database = client.GetDatabase("DependensiInTaskList");
-            var collection = database.GetCollection<TaskService>(day);
+            var collection = database.GetCollection<TaskService>("Friday");
             collection.InsertOne(service);
         }
         public static List<TaskItem> GetListFromDb()

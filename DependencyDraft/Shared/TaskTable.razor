@@ -32,14 +32,14 @@
         <input class="form-control" placeholder="Coloborator" @bind-value="_nameColoborator" />
     </div>
     <div class="col">
-        <input class="form-control" type="datetime-local" placeholder="Day" @bind-value="dateTime"/>
-        <button @onclick="SaveDate">save</button>
+        <input class="form-control" type="datetime-local" placeholder="Day" @bind-value="taskService.TimeOfAdd"/>
+
     </div>
     <div class="col">
         <button class="btn btn-primary" @onclick="(()=> taskService.AddToList(_taskName, _nameColoborator))">Add Task</button>
     </div>
     <div class="col">
-        <button class="btn btn-primary" @onclick="(()=> dbService.AddCurrentListToDB(taskService, _day))">Save List</button>
+        <button class="btn btn-primary" @onclick="(()=> dbService.AddCurrentListToDB(taskService))">Save List</button>
     </div>
 </div>
 
