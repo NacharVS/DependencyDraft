@@ -18,7 +18,6 @@
                     <td>@task.NameOfColoborator</td>
                     <td><input type="checkbox" @bind-value="task.InProgress"></td>
                     <td><input type="checkbox" @bind-value="task.IsDone"></td>
-
                 </tr>
             }
         </tbody>
@@ -33,10 +32,11 @@
         <input class="form-control" placeholder="Coloborator" @bind-value="_nameColoborator" />
     </div>
     <div class="col">
-        <input class="form-control" placeholder="Day" @bind-value="_day" />
+        <input class="form-control" type="datetime-local" placeholder="Day" @bind-value="dateTime"/>
+        <button @onclick="SaveDate">save</button>
     </div>
     <div class="col">
-        <button class="btn btn-primary" @onclick="RefreshList">Add Task</button>
+        <button class="btn btn-primary" @onclick="(()=> taskService.AddToList(_taskName, _nameColoborator))">Add Task</button>
     </div>
     <div class="col">
         <button class="btn btn-primary" @onclick="(()=> dbService.AddCurrentListToDB(taskService, _day))">Save List</button>
