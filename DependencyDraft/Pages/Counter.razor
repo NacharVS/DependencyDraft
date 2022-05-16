@@ -8,9 +8,27 @@
 
 @code {
     private int currentCount = 0;
+    System.Timers.Timer timer;
 
-    private void IncrementCount()
+    protected override void OnInitialized()
+    {
+        timer = new System.Timers.Timer(500);
+        timer.Elapsed += IncrementCount;
+        timer.Start();
+
+    }
+    private void IncrementCount(object sender, ElapsedEventArgs e)
     {
         currentCount++;
+        Console.WriteLine(currentCount);
+        InvokeAsync(StateHasChanged);
+    }
+
+    public void Dispose()
+    {
+        if (timer != null)
+        {
+            timer.Dispose();
+        }
     }
 }
